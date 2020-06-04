@@ -6,7 +6,7 @@ main:
       title: Learn
 
     - url: /community/
-      title: Community
+      title: 社群
 
     - url: https://play.kotlinlang.org
       title: Play
@@ -19,13 +19,13 @@ subnav:
     - url: /docs/
       content:
         - url: /docs/reference/
-          title: Language Guide
+          title: 語言指南
 
         - url: /docs/tutorials/
-          title: Tutorials
+          title: 教程
 
         - url: /docs/books.html
-          title: Books
+          title: 書籍
     - url: /community/
       content:
         - url: /community/
@@ -37,7 +37,7 @@ subnav:
           title: User Groups
 
         - url: /community/kotlin-nights.html
-          title: Kotlin Nights
+          title: Kotlin 之夜
 
         - url: /community/talks.html
           title: Talks
@@ -46,43 +46,43 @@ subnav:
 # ====================
 reference:
   content:
-    - title: Overview
-      description: Overview of Kotlin
+    - title: 概觀
+      description: Kotlin 概觀
       content:
         - url: /docs/reference/server-overview.html
-          title: Kotlin for Server Side
+          title: Kotlin 用在伺服器端
         - url: /docs/reference/android-overview.html
-          title: Kotlin for Android
+          title: Kotlin 用在 Android
         - url: /docs/reference/js-overview.html
-          title: Kotlin for JavaScript
+          title: Kotlin 用在 JavaScript
         - url: /docs/reference/native-overview.html
-          title: Kotlin for Native
+          title: Kotlin 的原生開發
         - url: /docs/reference/data-science-overview.html
-          title: Kotlin for Data Science
+          title: Kotlin 用在 資料科學
         - url: /docs/reference/coroutines-overview.html
           title: Coroutines
         - url: /docs/reference/multiplatform.html
-          title: Multiplatform
+          title: 多平臺
 
-    - title: What's New
-      description: What's new in Kotlin releases
+    - title: 新東西
+      description: Kotlin 每個版本釋出的新特性/功能
       content:
         - url: /docs/reference/whatsnew13.html
-          title: What's New in 1.3
+          title: 1.3 的新東西
         - url: /docs/reference/whatsnew12.html
-          title: What's New in 1.2
+          title: 1.2 的新東西
         - url: /docs/reference/whatsnew11.html
-          title: What's New in 1.1
+          title: 1.1 的新東西
 
-    - title: Getting Started
-      description: Get familiar with the basics of Kotlin including operations, coding conventions and idioms.
+    - title: 怎麼開始
+      description: 熟悉 Kotlin 的基礎，包含如何運作、常見用法與程式碼規範
       content:
         - url: /docs/reference/basic-syntax.html
-          title: Basic Syntax
+          title: 基本語法
         - url: /docs/reference/idioms.html
-          title: Idioms
+          title: 常見用法
         - url: /docs/reference/coding-conventions.html
-          title: Coding Conventions
+          title: 程式碼規範
 
     - title: Basics
       description: The Basics
