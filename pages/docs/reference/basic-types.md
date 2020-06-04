@@ -1,28 +1,36 @@
 ---
 type: doc
 layout: reference
-category: "Syntax"
-title: "Basic Types: Numbers, Strings, Arrays"
+category: 'Syntax'
+title: 'Basic Types: Numbers, Strings, Arrays'
 ---
 
 # Basic Types
 
-In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable.
-Some of the types can have a special internal representation - for example, numbers, characters and booleans can be
-represented as primitive values at runtime - but to the user they look like ordinary classes. 
-In this section we describe the basic types used in Kotlin: numbers, characters, booleans, arrays, and strings.
+在 Kotlin 中, 所有的東西都是 object, 在這基礎上我們可以在任何的變數上呼叫 member functions 及 properties.
+
+<!-- In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable. -->
+
+有些類型可以有特別的內部表現型式 - 例如, numbers, characters and booleans 可以在執行時表示為原生類型, 但對使用者來說它們看起來就像是普通的 classes.
+
+<!-- Some of the types can have a special internal representation - for example, numbers, characters and booleans can be
+represented as primitive values at runtime - but to the user they look like ordinary classes. -->
+
+在這個章節我們會說明 Kotlin 中的 numbers, characters, booleans, arrays 和 strings.
+
+<!-- In this section we describe the basic types used in Kotlin: numbers, characters, booleans, arrays, and strings. -->
 
 ## Numbers
 
-Kotlin provides a set of built-in types that represent numbers.  
+Kotlin provides a set of built-in types that represent numbers.
 For integer numbers, there are four types with different sizes and, hence, value ranges.
 
-| Type	 |Size (bits)| Min value| Max value|
-|--------|-----------|----------|--------- |
-| Byte	 | 8         |-128      |127       |
-| Short	 | 16        |-32768    |32767     |
-| Int	 | 32        |-2,147,483,648 (-2<sup>31</sup>)| 2,147,483,647 (2<sup>31</sup> - 1)|
-| Long	 | 64        |-9,223,372,036,854,775,808 (-2<sup>63</sup>)|9,223,372,036,854,775,807 (2<sup>63</sup> - 1)|
+| Type  | Size (bits) | Min value                                    | Max value                                      |
+| ----- | ----------- | -------------------------------------------- | ---------------------------------------------- |
+| Byte  | 8           | -128                                         | 127                                            |
+| Short | 16          | -32768                                       | 32767                                          |
+| Int   | 32          | -2,147,483,648 (-2<sup>31</sup>)             | 2,147,483,647 (2<sup>31</sup> - 1)             |
+| Long  | 64          | -9,223,372,036,854,775,808 (-2<sup>63</sup>) | 9,223,372,036,854,775,807 (2<sup>63</sup> - 1) |
 
 All variables initialized with integer values not exceeding the maximum value of `Int`
 have the inferred type `Int`. If the initial value exceeds this value, then the type is `Long`.
@@ -42,17 +50,16 @@ val oneByte: Byte = 1
 For floating-point numbers, Kotlin provides types `Float` and `Double`.
 According to the [IEEE 754 standard](https://en.wikipedia.org/wiki/IEEE_754),
 floating point types differ by their _decimal place_, that is, how many decimal digits they can store.
-`Float` reflects the IEEE 754 _single precision_, while `Double` provides _double precision_.  
- 
+`Float` reflects the IEEE 754 _single precision_, while `Double` provides _double precision_.
 
-| Type	 |Size (bits)|Significant bits|Exponent bits|Decimal digits|
-|--------|-----------|--------------- |-------------|--------------|
-| Float	 | 32        |24              |8            |6-7            |
-| Double | 64        |53              |11           |15-16          |    
-  
+| Type   | Size (bits) | Significant bits | Exponent bits | Decimal digits |
+| ------ | ----------- | ---------------- | ------------- | -------------- |
+| Float  | 32          | 24               | 8             | 6-7            |
+| Double | 64          | 53               | 11            | 15-16          |
+
 For variables initialized with fractional numbers, the compiler infers the `Double` type.
 To explicitly specify the `Float` type for a value, add the suffix `f` or `F`.
-If such a value contains more than 6-7 decimal digits, it will be rounded. 
+If such a value contains more than 6-7 decimal digits, it will be rounded.
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -65,8 +72,8 @@ val eFloat = 2.7182818284f // Float, actual value is 2.7182817
 </div>
 
 Note that unlike some other languages, there are no implicit widening conversions for numbers in Kotlin.
-For example, a function with a `Double` parameter can be called only on `Double` values, but not `Float`, 
-`Int`, or other numeric values.  
+For example, a function with a `Double` parameter can be called only on `Double` values, but not `Float`,
+`Int`, or other numeric values.
 
 <div class="sample" markdown="1" theme="idea" data-min-compiler-version="1.3">
 
@@ -74,15 +81,16 @@ For example, a function with a `Double` parameter can be called only on `Double`
 fun main() {
     fun printDouble(d: Double) { print(d) }
 
-    val i = 1    
+    val i = 1
     val d = 1.1
-    val f = 1.1f 
+    val f = 1.1f
 
     printDouble(d)
 //    printDouble(i) // Error: Type mismatch
 //    printDouble(f) // Error: Type mismatch
 }
 ```
+
 </div>
 
 To convert numeric values to different types, use [Explicit conversions](#explicit-conversions).
@@ -91,20 +99,20 @@ To convert numeric values to different types, use [Explicit conversions](#explic
 
 There are the following kinds of literal constants for integral values:
 
-* Decimals: `123`
-  * Longs are tagged by a capital `L`: `123L`
-* Hexadecimals: `0x0F`
-* Binaries: `0b00001011`
+-   Decimals: `123`
+    -   Longs are tagged by a capital `L`: `123L`
+-   Hexadecimals: `0x0F`
+-   Binaries: `0b00001011`
 
 NOTE: Octal literals are not supported.
 
 Kotlin also supports a conventional notation for floating-point numbers:
- 
-* Doubles by default: `123.5`, `123.5e10`
-* Floats are tagged by `f` or `F`: `123.5f`
- 
+
+-   Doubles by default: `123.5`, `123.5e10`
+-   Floats are tagged by `f` or `F`: `123.5f`
+
 ### Underscores in numeric literals (since 1.1)
- 
+
 You can use underscores to make number constants more readable:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
@@ -121,7 +129,7 @@ val bytes = 0b11010010_01101001_10010100_10010010
 
 ### Representation
 
-On the Java platform, numbers are physically stored as JVM primitive types, unless we need a nullable number reference (e.g. `Int?`) or generics are involved. 
+On the Java platform, numbers are physically stored as JVM primitive types, unless we need a nullable number reference (e.g. `Int?`) or generics are involved.
 In the latter cases numbers are boxed.
 
 Note that boxing of numbers does not necessarily preserve identity:
@@ -212,13 +220,13 @@ fun main() {
 
 Every number type supports the following conversions:
 
-* `toByte(): Byte`
-* `toShort(): Short`
-* `toInt(): Int`
-* `toLong(): Long`
-* `toFloat(): Float`
-* `toDouble(): Double`
-* `toChar(): Char`
+-   `toByte(): Byte`
+-   `toShort(): Short`
+-   `toInt(): Int`
+-   `toLong(): Long`
+-   `toFloat(): Float`
+-   `toDouble(): Double`
+-   `toChar(): Char`
 
 Absence of implicit conversions is rarely noticeable because the type is inferred from the context, and arithmetical operations are overloaded for appropriate conversions, for example
 
@@ -232,7 +240,7 @@ val l = 1L + 3 // Long + Int => Long
 
 ### Operations
 
-Kotlin supports the standard set of arithmetical operations over numbers (`+` `-` `*` `/` `%`), which are declared 
+Kotlin supports the standard set of arithmetical operations over numbers (`+` `-` `*` `/` `%`), which are declared
 as members of appropriate classes (but the compiler optimizes the calls down to the corresponding instructions).
 See [Operator overloading](operator-overloading.html).
 
@@ -284,7 +292,7 @@ fun main() {
 
 </div>
 
-#### Bitwise operations 
+#### Bitwise operations
 
 As for bitwise operations, there're no special characters for them, but just named functions that can be called in infix form, for example:
 
@@ -298,33 +306,33 @@ val x = (1 shl 2) and 0x000FF000
 
 Here is the complete list of bitwise operations (available for `Int` and `Long` only):
 
-* `shl(bits)` – signed shift left
-* `shr(bits)` – signed shift right
-* `ushr(bits)` – unsigned shift right
-* `and(bits)` – bitwise __and__
-* `or(bits)` – bitwise __or__
-* `xor(bits)` – bitwise __xor__
-* `inv()` – bitwise inversion
+-   `shl(bits)` – signed shift left
+-   `shr(bits)` – signed shift right
+-   `ushr(bits)` – unsigned shift right
+-   `and(bits)` – bitwise **and**
+-   `or(bits)` – bitwise **or**
+-   `xor(bits)` – bitwise **xor**
+-   `inv()` – bitwise inversion
 
 ### Floating point numbers comparison
 
 The operations on floating point numbers discussed in this section are:
 
-* Equality checks: `a == b` and `a != b`
-* Comparison operators: `a < b`, `a > b`, `a <= b`, `a >= b`
-* Range instantiation and range checks: `a..b`, `x in a..b`, `x !in a..b`
+-   Equality checks: `a == b` and `a != b`
+-   Comparison operators: `a < b`, `a > b`, `a <= b`, `a >= b`
+-   Range instantiation and range checks: `a..b`, `x in a..b`, `x !in a..b`
 
-When the operands `a` and `b` are statically known to be `Float` or `Double` or their nullable counterparts (the type is 
-declared or inferred or is a result of a [smart cast](typecasts.html#smart-casts)), the operations on the 
-numbers and the range that they form follow the IEEE 754 Standard for Floating-Point Arithmetic. 
+When the operands `a` and `b` are statically known to be `Float` or `Double` or their nullable counterparts (the type is
+declared or inferred or is a result of a [smart cast](typecasts.html#smart-casts)), the operations on the
+numbers and the range that they form follow the IEEE 754 Standard for Floating-Point Arithmetic.
 
-However, to support generic use cases and provide total ordering, when the operands are **not** statically typed as 
-floating point numbers (e.g. `Any`, `Comparable<...>`, a type parameter), the operations use the 
+However, to support generic use cases and provide total ordering, when the operands are **not** statically typed as
+floating point numbers (e.g. `Any`, `Comparable<...>`, a type parameter), the operations use the
 `equals` and `compareTo` implementations for `Float` and `Double`, which disagree with the standard, so that:
 
-* `NaN` is considered equal to itself
-* `NaN` is considered greater than any other element including `POSITIVE_INFINITY`
-* `-0.0` is considered less than `0.0`
+-   `NaN` is considered equal to itself
+-   `NaN` is considered greater than any other element including `POSITIVE_INFINITY`
+-   `-0.0` is considered less than `0.0`
 
 ## Characters
 
@@ -365,15 +373,15 @@ Like numbers, characters are boxed when a nullable reference is needed. Identity
 
 ## Booleans
 
-The type `Boolean` represents booleans, and has two values: *true*{: .keyword } and *false*{: .keyword }.
+The type `Boolean` represents booleans, and has two values: _true_{: .keyword } and _false_{: .keyword }.
 
 Booleans are boxed if a nullable reference is needed.
 
 Built-in operations on booleans include
 
-* `||` – lazy disjunction
-* `&&` – lazy conjunction
-* `!` - negation
+-   `||` – lazy disjunction
+-   `&&` – lazy conjunction
+-   `!` - negation
 
 ## Arrays
 
@@ -417,7 +425,7 @@ fun main() {
 As we said above, the `[]` operation stands for calls to member functions `get()` and `set()`.
 
 Arrays in Kotlin are _invariant_. This means that Kotlin does not let us assign an `Array<String>`
-to an `Array<Any>`, which prevents a possible runtime failure (but you can use `Array<out Any>`, 
+to an `Array<Any>`, which prevents a possible runtime failure (but you can use `Array<out Any>`,
 see [Type Projections](generics.html#type-projections)).
 
 ### Primitive type arrays
@@ -447,48 +455,48 @@ val arr = IntArray(5) { 42 }
 
 // e.g. initialise the values in the array using a lambda
 // Array of int of size 5 with values [0, 1, 2, 3, 4] (values initialised to their index value)
-var arr = IntArray(5) { it * 1 } 
+var arr = IntArray(5) { it * 1 }
 ```
 
 </div>
 
-
 ## Unsigned integers
 
-> Unsigned types are available only since Kotlin 1.3 and currently are *experimental*. See details [below](#experimental-status-of-unsigned-integers) 
-{:.note}
+> Unsigned types are available only since Kotlin 1.3 and currently are _experimental_. See details [below](#experimental-status-of-unsigned-integers)
+> {:.note}
 
 Kotlin introduces following types for unsigned integers:
 
-* `kotlin.UByte`: an unsigned 8-bit integer, ranges from 0 to 255
-* `kotlin.UShort`: an unsigned 16-bit integer, ranges from 0 to 65535
-* `kotlin.UInt`: an unsigned 32-bit integer, ranges from 0 to 2^32 - 1
-* `kotlin.ULong`: an unsigned 64-bit integer, ranges from 0 to 2^64 - 1
+-   `kotlin.UByte`: an unsigned 8-bit integer, ranges from 0 to 255
+-   `kotlin.UShort`: an unsigned 16-bit integer, ranges from 0 to 65535
+-   `kotlin.UInt`: an unsigned 32-bit integer, ranges from 0 to 2^32 - 1
+-   `kotlin.ULong`: an unsigned 64-bit integer, ranges from 0 to 2^64 - 1
 
 Unsigned types support most of the operations of their signed counterparts.
 
-> Note that changing type from unsigned type to signed counterpart (and vice versa) is a *binary incompatible* change
-{:.note}
+> Note that changing type from unsigned type to signed counterpart (and vice versa) is a _binary incompatible_ change
+> {:.note}
 
 Unsigned types are implemented using another experimental feature, namely [inline classes](inline-classes.html).
 
-### Specialized classes 
+### Specialized classes
 
 Same as for primitives, each of unsigned type has corresponding type that represents array, specialized for that unsigned type:
 
-* `kotlin.UByteArray`: an array of unsigned bytes
-* `kotlin.UShortArray`: an array of unsigned shorts
-* `kotlin.UIntArray`: an array of unsigned ints
-* `kotlin.ULongArray`: an array of unsigned longs
+-   `kotlin.UByteArray`: an array of unsigned bytes
+-   `kotlin.UShortArray`: an array of unsigned shorts
+-   `kotlin.UIntArray`: an array of unsigned ints
+-   `kotlin.ULongArray`: an array of unsigned longs
 
-Same as for signed integer arrays, they provide similar API to `Array` class without boxing overhead. 
+Same as for signed integer arrays, they provide similar API to `Array` class without boxing overhead.
 
-Also, [ranges and progressions](ranges.html) supported for `UInt` and `ULong` by classes `kotlin.ranges.UIntRange`, `kotlin.ranges.UIntProgression`, `kotlin.ranges.ULongRange`, `kotlin.ranges.ULongProgression` 
+Also, [ranges and progressions](ranges.html) supported for `UInt` and `ULong` by classes `kotlin.ranges.UIntRange`, `kotlin.ranges.UIntProgression`, `kotlin.ranges.ULongRange`, `kotlin.ranges.ULongProgression`
 
 ### Literals
 
 To make unsigned integers easier to use, Kotlin provides an ability to tag an integer literal with a suffix indicating a specific unsigned type (similarly to Float/Long):
-* suffixes `u` and `U` tag literal as unsigned. Exact type will be determined based on the expected type. If no expected type is provided, `UInt` or `ULong` will be chosen based on the size of literal 
+
+-   suffixes `u` and `U` tag literal as unsigned. Exact type will be determined based on the expected type. If no expected type is provided, `UInt` or `ULong` will be chosen based on the size of literal
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -501,9 +509,9 @@ val a1 = 42u // UInt: no expected type provided, constant fits in UInt
 val a2 = 0xFFFF_FFFF_FFFFu // ULong: no expected type provided, constant doesn't fit in UInt
 ```
 
-</div> 
+</div>
 
-* suffixes `uL` and `UL` explicitly tag literal as unsigned long.
+-   suffixes `uL` and `UL` explicitly tag literal as unsigned long.
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -515,14 +523,14 @@ val a = 1UL // ULong, even though no expected type provided and constant fits in
 
 ### Experimental status of unsigned integers
 
-The design of unsigned types is experimental, meaning that this feature is moving fast and no compatibility guarantees are given. When using unsigned arithmetics in Kotlin 1.3+, warning will be reported, indicating that this feature is experimental. To remove warning, you have to opt-in for experimental usage of unsigned types. 
+The design of unsigned types is experimental, meaning that this feature is moving fast and no compatibility guarantees are given. When using unsigned arithmetics in Kotlin 1.3+, warning will be reported, indicating that this feature is experimental. To remove warning, you have to opt-in for experimental usage of unsigned types.
 
 There are two possible ways to opt-in for unsigned types: with marking your API as experimental too, or without doing that.
 
-- To propagate experimentality, annotate declarations that use unsigned integers with `@ExperimentalUnsignedTypes`.
-- To opt-in without propagating experimentality, either annotate declarations with `@OptIn(ExperimentalUnsignedTypes::class)` or pass `-Xopt-in=kotlin.ExperimentalUnsignedTypes` to the compiler.
+-   To propagate experimentality, annotate declarations that use unsigned integers with `@ExperimentalUnsignedTypes`.
+-   To opt-in without propagating experimentality, either annotate declarations with `@OptIn(ExperimentalUnsignedTypes::class)` or pass `-Xopt-in=kotlin.ExperimentalUnsignedTypes` to the compiler.
 
-It's up to you to decide if your clients have to explicitly opt-in into usage of your API, but bear in mind that unsigned types are an experimental feature, so API which uses them can be suddenly broken due to changes in language. 
+It's up to you to decide if your clients have to explicitly opt-in into usage of your API, but bear in mind that unsigned types are an experimental feature, so API which uses them can be suddenly broken due to changes in language.
 
 See also or Experimental API [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/experimental.md) for technical details.
 
@@ -534,7 +542,7 @@ See [language proposal for unsigned types](https://github.com/Kotlin/KEEP/blob/m
 
 Strings are represented by the type `String`. Strings are immutable.
 Elements of a string are characters that can be accessed by the indexing operation: `s[i]`.
-A string can be iterated over with a *for*{: .keyword }-loop:
+A string can be iterated over with a _for_{: .keyword }-loop:
 
 <div class="sample" markdown="1" theme="idea">
 
@@ -617,7 +625,7 @@ By default `|` is used as margin prefix, but you can choose another character an
 ### String templates
 
 String literals may contain template expressions, i.e. pieces of code that are evaluated and whose results are concatenated into the string.
-A template expression starts with a dollar sign ($) and consists of either a simple name:
+A template expression starts with a dollar sign (\$) and consists of either a simple name:
 
 <div class="sample" markdown="1" theme="idea">
 
